@@ -1,0 +1,25 @@
+# local requests
+GET http://localhost:8080/recipes HTTP/1.1
+
+###
+
+POST http://localhost:8080/recipes HTTP/1.1
+application: text/json
+
+[{
+      "recipeName":"Bread",
+      "cookTemp":"350 F",
+      "cookTime":"25 minutes",
+      "mealTime": "any",
+      "mealType": "breads",
+      "directions":"mix dry, add liquid, blend for 10min, knead, cook",
+      "ingredients":["5 cups flour", "1/4 cup sugar", "2 cups hot water", "2 Tbsp SAF yeast", "2 drops soy lecithin", "2 Tbsp salt"]
+  },
+{
+    "rating": 5,
+    "difficulty": "easy"
+}]
+
+
+###
+GET http://localhost:8080/recipes/634770dd9afb96b6e95b11d0 HTTP/1.1
