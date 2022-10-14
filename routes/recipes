@@ -1,0 +1,16 @@
+const express = require("express");
+const router = express.Router();
+
+const {
+  getAll,
+  getOne,
+  createRecipe
+} = require("../controllers/recipe");
+
+router.get("/", getAll);
+router.get("/:id", getOne);
+// router.put("/:id", updateContact);
+// router.delete("/:id", deleteContact);
+router.post("/", createRecipe);
+
+module.exports = router;
