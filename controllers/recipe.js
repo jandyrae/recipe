@@ -81,14 +81,14 @@ const createRecipe = async (req, res, next) => {
       ingredients,
       directions,
     },
-    function (err, result) {
+    function (err, res) {
       if (err) throw err;
-      console.log(`${result.insertedCount} recipe document inserted`);
+      console.log(`${res.insertedCount} recipe document inserted`);
     }
   );
   res.status(201);
   res.json(req.body);
-  console.log(document, documentKitchen);
+  console.table(document, documentKitchen);
 };
 
 // try catch to access database, used in functions
