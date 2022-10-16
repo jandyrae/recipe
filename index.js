@@ -10,7 +10,6 @@ const swaggerFile = require("./swagger.json");
 const port = config.PORT || 8080;
 const connectDB = require("./models/connectDB");
 
-
 app
   .use([cors, bodyParser.json()])
   .use((req, res, next) => {
@@ -19,8 +18,6 @@ app
   })
   .use("/", require("./routes/index"))
   .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
-
-
 
 app.listen(port, () => {
   console.log(

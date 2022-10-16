@@ -1,11 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const {
-  getAll,
-  getOne,
-  createRecipe
-} = require("../controllers/recipe");
+const { getAll, getOne, createRecipe } = require("../controllers/recipe");
 
 router.get("/", getAll);
 router.get("/:id", getOne);

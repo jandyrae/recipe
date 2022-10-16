@@ -12,6 +12,7 @@ const getDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       serverApi: ServerApiVersion.v1,
+      // db = await mongoose.connect(process.env.DB_URI);
     });
 
     await client.connect();

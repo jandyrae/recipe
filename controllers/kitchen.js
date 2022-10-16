@@ -26,17 +26,26 @@ const getAll = async (req, res, next) => {
     /* #swagger.test an id to test 632e9370ac262785f13f4f38*/
     const collection = await _collection();
     const document = await collection
-      .find({
+    .find({
+      _id: ObjectId(req.params.id),
+    })
+    .toArray();
+  console.log(ObjectId(req.params.id));
+//   res.json(document[0]);
+    const collectionKitchen = await _collectionKitchen();
+    const documentKitchen = await collectionKitchen.find({
         _id: ObjectId(req.params.id),
       })
       .toArray();
     console.log(ObjectId(req.params.id));
-    res.json(document[0]);
+    // res.json(documentKitchen[0]);
+    const bothDocuments = document[0].concat(documentKitchen[0]); // doesn't actually merge the objects
+    res.status(200).json(bothDocuments);
   };
 
 const createRecipe = async (req, res, next) => {
     /* #swagger.description 
-    {
+   [ {
       "recipeName":"Bread",
       "cookTemp":"350 F",
       "cookTime":"25 minutes",
@@ -47,7 +56,7 @@ const createRecipe = async (req, res, next) => {
   }, {
     "rating": 5,
     "difficulty": easy
-  }
+  }]
     */
     // create new record in database POST 201
     const collection = await _collection();
