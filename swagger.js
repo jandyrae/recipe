@@ -5,7 +5,7 @@ const doc = {
     title: "Recipe API",
     description: "Simple API for recipe information.",
   },
-  host: "http://localhost:8080",
+  host: "",
   schemes: ["http", "https"],
 };
 

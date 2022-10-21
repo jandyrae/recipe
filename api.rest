@@ -1,50 +1,75 @@
 # local requests
+### get all recipes
 GET http://localhost:8080/recipes HTTP/1.1
 
-###
 
+### create recipe
 POST http://localhost:8080/recipes HTTP/1.1
 Content-Type: application/json
 
-[{
-      "recipeName": "Bread dough",
-      "cookTemp": "350 F",
-      "cookTime": "25 minutes",
-      "mealTime": "any",
-      "mealType": "breads",
-      "directions": "mix dry, add liquid, blend for 10min, knead, cook",
-      "ingredients": ["5 cups flour", "1/4 cup sugar", "2 cups hot water", "2 Tbsp SAF yeast", "2 drops soy lecithin", "2 Tbsp salt"]
-      },
 {
-        "rating": 5,
-      "difficulty": "easy"
-      }]
+      "recipeName":"Snack Roll dough",
+      "cookTemp":"350 F",
+      "cookTime":"25 minutes",
+      "directions":"mix dry, add liquid, blend for 10min, knead, cook",
+      "ingredients":["5 cups flour", "1/4 cup sugar", "2 cups hot water", "2 Tbsp SAF yeast", "2 drops soy lecithin", "2 Tbsp salt"],
+      "mealTime":"any",
+      "mealType":"breads",
+      "rating":5,
+      "difficulty":"easy",
+      "fromKitchenOf":"jandyrae@gmail.com"
+      }
 
 
-###
+### get single recipe
 GET http://localhost:8080/recipes/634770dd9afb96b6e95b11d0 HTTP/1.1
 
-##### Render links ######
+### get info from whose kitchen the recipe came
+GET http://localhost:8080/fromTheKitchenOf HTTP/1.1
 
+### create recipe owner
+POST http://localhost:8080/fromTheKitchenOf HTTP/1.1
+Content-Type: application/json
+
+{
+  "firstName":"Jaynann",
+  "lastName":"Perrett",
+  "email":"gma@gmail.com",
+  "phoneNumber":"661-406-5555"
+  }
+
+### get single recipe owner
+GET http://localhost:8080/fromTheKitchenOf/632e9370ac262785f13f4f38 HTTP/1.1
+
+##### Render links ######
+### get all recipes
 GET https://recipeapi-vhb5.onrender.com/recipes HTTP/1.1
 
-###
-
+### GET single recipe
 GET https://recipeapi-vhb5.onrender.com/recipes/634770dd9afb96b6e95b11d1 HTTP/1.1
 
-### 
+### create recipe
 POST https://recipeapi-vhb5.onrender.com/recipes HTTP/1.1
 Content-Type: application/json
 
 [{
-  "rating": "any",
-  "difficulty": "any",
   "recipeName": "any",
   "cookTemp": "any",
   "cookTime": "any",
   "mealType": "any",
   "mealTime": "any",
-  "ingredients": ["any"],
-  "directions": "any"
+  "ingredients": ["any", "list", "of", "ingredients"],
+  "directions": "any",
+  "rating": 5,
+  "difficulty": "easy",
+  "email": "jandyrae@gmail.com"
 }]
+
+### get all recipe owners
+GET https://recipeapi-vhb5.onrender.com/fromTheKitchenOf HTTP/1.1
+
+### get single recipe owner
+GET https://recipeapi-vhb5.onrender.com/fromTheKitchenOf/632e9370ac262785f13f4f38 HTTP/1.1
+
+
 

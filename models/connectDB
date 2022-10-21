@@ -1,5 +1,6 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const dotenv = require("dotenv");
+
 dotenv.config();
 
 // For memoizing the db for optimization
@@ -11,8 +12,7 @@ const getDB = async () => {
     const client = new MongoClient(process.env.DB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      serverApi: ServerApiVersion.v1,
-      // db = await mongoose.connect(process.env.DB_URI);
+      serverApi: ServerApiVersion.v1
     });
 
     await client.connect();

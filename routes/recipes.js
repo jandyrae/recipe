@@ -1,12 +1,17 @@
 const express = require("express");
 const router = express.Router();
+const validation = require("../middleware/validate");
 
-const { getAll, getOne, createRecipe } = require("../controllers/recipe");
+const {
+  getAllRecipes,
+  getOneRecipe,
+  createRecipe,
+} = require("../controllers/recipe");
 
-router.get("/", getAll);
-router.get("/:id", getOne);
-// router.put("/:id", updateContact);
-// router.delete("/:id", deleteContact);
-router.post("/", createRecipe);
+router.get("/", getAllRecipes);
+router.get("/:id", getOneRecipe);
+// router.put("/:id", updateRecipe);
+// router.delete("/:id", deleteRecipe);
+router.post("/", validation.createRecipe, createRecipe);
 
 module.exports = router;
