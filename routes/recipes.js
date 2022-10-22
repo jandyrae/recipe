@@ -6,12 +6,15 @@ const {
   getAllRecipes,
   getOneRecipe,
   createRecipe,
+  updateRecipe,
+  deleteRecipe
 } = require("../controllers/recipe");
 
 router.get("/", getAllRecipes);
-router.get("/:id", getOneRecipe);
-// router.put("/:id", updateRecipe);
-// router.delete("/:id", deleteRecipe);
 router.post("/", validation.createRecipe, createRecipe);
+router.get("/:id", getOneRecipe);
+router.put("/:id", validation.createRecipe, updateRecipe);
+router.delete("/:id", deleteRecipe);
+
 
 module.exports = router;
