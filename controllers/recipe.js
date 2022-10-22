@@ -57,20 +57,18 @@ const createRecipe = async (req, res, next) => {
       rating,
       fromKitchenOf,
     } = req.body;
-    const document = await collection.insertOne(
-      {
-        recipeName,
-        cookTemp,
-        cookTime,
-        directions,
-        ingredients,
-        difficulty,
-        mealTime,
-        mealType,
-        rating,
-        fromKitchenOf,
-      }
-    );
+    const document = await collection.insertOne({
+      recipeName,
+      cookTemp,
+      cookTime,
+      directions,
+      ingredients,
+      difficulty,
+      mealTime,
+      mealType,
+      rating,
+      fromKitchenOf,
+    });
     console.log(`${document} recipe document inserted`);
     res.status(201);
     res.json(req.body);

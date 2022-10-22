@@ -3,7 +3,6 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-// For memoizing the db for optimization
 let db;
 
 const getDB = async () => {
@@ -12,7 +11,7 @@ const getDB = async () => {
     const client = new MongoClient(process.env.DB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      serverApi: ServerApiVersion.v1
+      serverApi: ServerApiVersion.v1,
     });
 
     await client.connect();
