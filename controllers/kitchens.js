@@ -19,7 +19,7 @@ const getAllContacts = async (req, res, next) => {
 
 const getOneContact = async (req, res, next) => {
   // #swagger.tags = ['fromTheKitchenOf']
- // #swagger.description = 'An id is required to access, use `63536cad46db7e234e064f15`.'
+  // #swagger.description = 'An id is required to access, use `63536cad46db7e234e064f15`.'
 
   if (!ObjectId.isValid(req.params.id)) {
     res
@@ -49,24 +49,24 @@ const createContact = async (req, res, next) => {
             schema: { $ref: "#/definitions/fromKitchenOfExample" }
     } */
   // create new record in database POST 201
-  const collection = await _collection();
-  const { firstName, lastName, email, phoneNumber } = req.body;
-  const document = await collection.insertOne(
-    {
+  try {
+    const collection = await _collection();
+    const { firstName, lastName, email, phoneNumber } = req.body;
+    const document = await collection.insertOne({
       firstName,
       lastName,
       email,
       phoneNumber,
-    },
-    function (err, result) {
-      if (err) throw err;
-      console.log(`${result.insertedCount} recipe author's document inserted`);
-    }
-  );
-  res.status(201);
-  res.json(req.body);
-  console.log(document);
-  // next();
+    });
+    console.log(`${document} recipe author document inserted`);
+    res.status(201);
+    res.json(req.body);
+    console.table(document);
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({ message: err });
+  }
+  next();
 };
 
 const updateContact = async (req, res, next) => {

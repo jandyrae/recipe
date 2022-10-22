@@ -79,12 +79,9 @@ const createRecipe = async (req, res, next) => {
     console.error(err);
     res.status(400).json({ message: err });
   }
-  // next();
+  next();
 };
 
-/* #swagger.responseBody = { 
-      "$ref": "#/definitions/myRecipeExampleArray" 
-    } */
 const updateRecipe = async (req, res, next) => {
   // #swagger.tags = ['recipes']
   // #swagger.description = 'Use example ID `63536d1146db7e234e064f16` to update recipe'
@@ -98,7 +95,7 @@ const updateRecipe = async (req, res, next) => {
   if (!ObjectId.isValid(req.params.id)) {
     res
       .status(400)
-      .json("Use a valid kitchen contact id to find a specific recipe ");
+      .json("Use a valid kitchen contact id to find a specific recipe");
   }
   try {
     const collection = await _collection();
