@@ -2,24 +2,21 @@ const getDB = require("../models/connectDB");
 const { ObjectId } = require("mongodb");
 
 const getAllRecipes = async (req, res, next) => {
-  /* #swagger.description {return all recipes}*/
-  const filter = Object.fromEntries(
-    Object.entries({
-    }).filter(([_k, v]) => v)
-  );
+  // #swagger.tags = ['recipes']
+  const filter = Object.fromEntries(Object.entries({}).filter(([_k, v]) => v));
   const collection = await _collection();
-  // const documents = 
-  await collection.find(filter).toArray((err, result) => {
+  const documents = await collection.find(filter).toArray((err, result) => {
     if (err) {
       res.status(500).json({ message: err });
     }
     res.status(200).json(result);
   });
+  console.log(documents);
 };
 
 const getOneRecipe = async (req, res, next) => {
-  // retrieve one document by id GET
-  /* #swagger.test {an id to test 632e9370ac262785f13f4f38}*/
+  // #swagger.tags = ['recipes']
+  // #swagger.description = 'An id is required to access, use `635202a1638557dd0a797441`.'
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json("Use a valid recipe id to find a specific recipe.");
   }
@@ -30,46 +27,25 @@ const getOneRecipe = async (req, res, next) => {
     })
     .toArray((err, result) => {
       if (err) {
-        res.status(400).json({ message: err });
+        res.status(500).json({ message: err });
       }
       res.status(200).json(result[0]);
     });
-  console.log(ObjectId(req.params.id));
-  // res.json(document[0]);
+  console.log(ObjectId(req.params.id), document[0]);
 };
 
 const createRecipe = async (req, res, next) => {
-  /* #swagger.description 
-    {
-      "recipeName":"Bread",
-      "cookTemp":"350 F",
-      "cookTime":"25 minutes",
-      "mealType": "breads",
-      "mealTime": "any/all"
-      "ingredients":["5 cups flour", "1/4 cup sugar", "2 cups hot water", "2 Tbsp SAF yeast", "2 drops soy lecithin", "2 Tbsp salt"],
-      "directions":"mix dry, add liquid, blend for 10min, knead, cook",
-      "rating": 5,
-      "difficulty": "easy",
-      "fromKitchenOf": "jandy@email.com"
-  }
-    */
+  // #swagger.tags = ['recipes']
+  /*	#swagger.parameters['obj'] = {
+            in: 'body',
+            description: 'Recipe information',
+            required: true,
+            schema: { $ref: "#/definitions/recipeArrayExample" }
+    } */
   // create new record in database POST 201
-  // try {
-  const collection = await _collection();
-  const {
-    recipeName,
-    cookTemp,
-    cookTime,
-    directions,
-    ingredients,
-    difficulty,
-    mealTime,
-    mealType,
-    rating,
-    fromKitchenOf,
-  } = req.body;
-  const document = await collection.insertOne(
-    {
+  try {
+    const collection = await _collection();
+    const {
       recipeName,
       cookTemp,
       cookTime,
@@ -80,44 +56,50 @@ const createRecipe = async (req, res, next) => {
       mealType,
       rating,
       fromKitchenOf,
-    },
-    function (err, result) {
-      if (err) {
-        res.status(400).json({ message: err });
-      };
-      console.log(`${result.insertedCount} recipe document inserted`);
-    }
-  );
- 
-  res.status(201);
-  res.json(req.body);
-  console.table(document);
-  // next();
+    } = req.body;
+    const document = await collection.insertOne(
+      {
+        recipeName,
+        cookTemp,
+        cookTime,
+        directions,
+        ingredients,
+        difficulty,
+        mealTime,
+        mealType,
+        rating,
+        fromKitchenOf,
+      }
+    );
+    console.log(`${document} recipe document inserted`);
+    res.status(201);
+    res.json(req.body);
+    console.table(document);
+  } catch (err) {
+    console.error(err);
+    res.status(400).json({ message: err });
+  }
+  next();
 };
 
 const updateRecipe = async (req, res, next) => {
-  /* #swagger.description For testing purposes use 
-    {
-      "recipeName":"Bread",
-      "cookTemp":"350 F",
-      "cookTime":"25 minutes",
-      "mealType": "breads",
-      "mealTime": "any/all"
-      "ingredients":["5 cups flour", "1/4 cup sugar", "2 cups hot water", "2 Tbsp SAF yeast", "2 drops soy lecithin", "2 Tbsp salt"],
-      "directions":"mix dry, add liquid, blend for 10min, knead, cook",
-      "rating": 5,
-      "difficulty": "easy",
-      "fromKitchenOf": "jandy@email.com"
-  }
-  */
+  // #swagger.tags = ['recipes']
+  // #swagger.description = 'Use example ID `63536d1146db7e234e064f16` to update recipe'
+  /*	#swagger.parameters['obj'] = {
+            in: 'body',
+            description: 'Recipe information',
+            required: true,
+            schema: { $ref: "#/definitions/recipeArrayExample" }
+    } */
   // update existing record in database PUT 204
   if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json("Use a valid kitchen contact id to find a specific recipe ");
+    res
+      .status(400)
+      .json("Use a valid kitchen contact id to find a specific recipe");
   }
   try {
     const collection = await _collection();
-    // Mongo will give an id if one isn't provided (required)
-    const {  
+    const {
       recipeName,
       cookTemp,
       cookTime,
@@ -128,7 +110,7 @@ const updateRecipe = async (req, res, next) => {
       mealType,
       rating,
       fromKitchenOf,
-     } = req.body;
+    } = req.body;
     const document = await collection.updateOne(
       {
         _id: ObjectId(req.params.id),
@@ -156,10 +138,12 @@ const updateRecipe = async (req, res, next) => {
   }
 };
 
-
 const deleteRecipe = async (req, res, next) => {
-  /* #swagger.description delete requires an id to delete use one shown from calling a GET
-   */
+  // #swagger.description = "Deleting requires an id to delete. Use `63536d1146db7e234e064f16`"
+  // #swagger.tags = ['recipes']
+  /* #swagger.security = [{
+        "apiKeyAuth": []
+    }] */
   // delete records from database DELETE 200
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json("Use a valid recipe id to delete specific owner.");
@@ -169,8 +153,7 @@ const deleteRecipe = async (req, res, next) => {
     const document = await collection.deleteOne({
       _id: ObjectId(req.params.id),
     });
-    res.status(200);
-    res.json(document);
+    res.status(200).json(document);
   } catch (err) {
     next(err);
   }
