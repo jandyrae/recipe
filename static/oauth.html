@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oAuth</title>
+    <script>
+        const URL_PARAMS = new URLSearchParams(window.location.search);
+        const TOKEN = URL_PARAMS.get('token');
+
+        const show = (selector) => {
+            document.querySelector.apply(selector).style.display = 'block';
+        }
+
+        const hide = (selector) => {
+            document.querySelector.apply(selector).style.display = 'none';
+        }
+
+        if (TOKEN) {
+            hide('.unauthorized');
+            show('.authorized');
+        }
+    </script>
+    <script src="../routes/oauth.js"></script>
+    <!-- styles go here -->
+    <style>
+        body {
+            color: bisque;
+            background-color: rgb(36, 96, 114);
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+        }
+
+        a {
+            color: black;
+        }
+
+        .button {
+            border-radius: 5px;
+            background-color: #4CAF50;
+            /* Green */
+            background-color: white;
+            border: 3px solid #4CAF50;
+            color: black;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 4em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='wrapper'>
+        <header>GITHUB OAUTH</header>
+        <main>
+
+            <div class="content">
+              <a class="button" href="/auth">Click to authorize via GITHUB</a>
+                <div class="unauthorized">
+                    <h1>Sorry, you need to be authorized!</h1>
+                </div>
+                <div class="authorized" style="display: none">
+                    <h1>You're in!</h1>
+                </div>
+            </div>
+        </main>
+        <footer>BYUI - Jandy Kiger</footer>
+    </div>
+</body>
+
+</html>
