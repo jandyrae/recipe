@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("./middleware/opencors");
 const app = express();
 
+
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("./swagger.json");
 
@@ -19,10 +20,9 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile))
   })
   .use("/", require("./routes"));
 
-
 app.listen(port, () => {
   console.log(
-    `Application listening on http://localhost:8080/ or ${port} see API documentation on http://localhost:8080/api-docs/`
+    `Application listening on http://127.0.0.1:8080/ or ${port} see API documentation on http://localhost:8080/api-docs/`
   );
 });
 
