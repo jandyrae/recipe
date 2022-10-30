@@ -1,7 +1,7 @@
 
 const express = require("express");
 const router = express.Router();
-var path = require("path");
+
 const AuthController = require("../controllers/auth");
 const opencors = require("../middleware/opencors");
 
