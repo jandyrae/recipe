@@ -8,7 +8,11 @@ const githubClientUrl = process.env.GITHUB_CLIENT_ID;
 const githubSecret = process.env.GITHUB_SECRET;
 const redirect_uri = process.env.REDIRECT;
 const client_id = process.env.CLIENT_ID;
+const auth0_baseURL= process.env.AUTHO_BASEURL;
+const auth0_id = process.env.AUTHO_ID;
+const auth0_secret = process.env.AUTHO_SECRET;
+
 
 module.exports = {
-  mongoUrl, renderAPI, dbName, githubClientUrl, githubSecret, dotenv, redirect_uri, client_id
+  mongoUrl, renderAPI, dbName, githubClientUrl, githubSecret, dotenv, redirect_uri, client_id, auth0_baseURL, auth0_id, auth0_secret
 };
