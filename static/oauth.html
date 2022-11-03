@@ -9,11 +9,9 @@
     <script>
         const URL_PARAMS = new URLSearchParams(window.location.search);
         const TOKEN = URL_PARAMS.get('token');
-
         const show = (selector) => {
             document.querySelector.apply(selector).style.display = 'block';
         }
-
         const hide = (selector) => {
             document.querySelector.apply(selector).style.display = 'none';
         }
@@ -23,7 +21,7 @@
             show('.authorized');
         }
     </script>
-    <script src="../routes/oauth.js"></script>
+    <script type="module" src="../routes/index"></script>
     <!-- styles go here -->
     <style>
         body {
@@ -78,7 +76,7 @@
         <main>
 
             <div class="content">
-              <a class="button" href="/auth">Click to authorize via GITHUB</a>
+              <a class="button" href="/authorize">Click to authorize via GITHUB</a>
                 <div class="unauthorized">
                     <h1>Sorry, you need to be authorized!</h1>
                 </div>
