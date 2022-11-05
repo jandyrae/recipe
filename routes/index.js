@@ -1,11 +1,11 @@
 const config = require("../config/index");
 const express = require("express");
 const router = express.Router();
-const { auth } = require("express-openid-connect");
 const {AuthController} = require("../controllers/auth");
 var path = require("path");
 const opencors = require("../middleware/opencors");
 const loadUser = require("../middleware/loadUser");
+
 // router.use(express.static("static")).use(opencors);
 
 // const configure = {
@@ -25,7 +25,7 @@ router.use([opencors, express.json()]);
 //     res.sendFile(path.join(__dirname, "../static/oauth.html"))});
 router.use("/authorization", require("./oauth"));
 router.use("/recipes", require("./recipes"));
-router.use("/fromTheKitchenOf", loadUser, require("./kitchens"));
-router.use("/api-docs", require("./swagger"));
+router.use("/fromTheKitchenOf", require("./kitchens"));
+router.use("/api-docs", loadUser, require("./swagger"));
 
 module.exports = router;
