@@ -21,7 +21,7 @@ const getOneRecipe = async (req, res, next) => {
     res.status(400).json("Use a valid recipe id to find a specific recipe.");
   }
   const collection = await _collection();
-  await collection
+  const document = await collection
     .find({
       _id: ObjectId(req.params.id),
     })
@@ -31,7 +31,7 @@ const getOneRecipe = async (req, res, next) => {
       }
       res.status(200).json(result[0]);
     });
-  console.log(ObjectId(req.params.id), document[0]);
+  console.log(ObjectId(req.params.id), document);
 };
 
 const createRecipe = async (req, res, next) => {

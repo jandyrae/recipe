@@ -78,7 +78,12 @@ Content-Type: application/json
 ### delete single recipe
 DELETE http://localhost:8080/fromTheKitchenOf/63536cad46db7e234e064f15 HTTP/1.1
 
+###
+GET http://127.0.0.1:8080/authorization/login HTTP/1.1
 
+###
+GET http://127.0.0.1:8080/userinfo  HTTP/1.1
+Authorization: Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwiaXNzIjoiaHR0cHM6Ly9kZXYtbnRnNXBoNmt0czh5MWl6YS51cy5hdXRoMC5jb20vIn0..vs6CfSws3dgjzlNR.snY3Xt_aO_qDBsEwy12ZlQ4XzO76ztg8aCa8E8pCqakXjzLlgk1EYKI06h3fYTH5f2G3l3KFw53LJrlRbW_IcrAH1mBcXuXK7y0v8kb51_z1mfvWKwRgfBddov0XIhuK8tuGxzT0ZTYkZw9fJ5wXgGROJ4XcyjZr3uMz3kvM0GgNzNW_khslb7bw7q5oApI_Zx54GUjBO1SHmUt8RNRdriDwDGr783cAO9QAS34Fc000dMf2MsMkmxCZwNHXr6jFGV4uw8ptdh9oaXNkpQ3TC_gt1WsXsGifDugtCuwKVzjLi4hkmXR-EVue3Rch6DtqblXKzxSUEv5ECkcM8Jm74uqKjxcQCwg.3PBbZmXuQ4x1so5dsieWcw
 
 ##### Render links ######-----------------------------------------
 # from recipes collection
