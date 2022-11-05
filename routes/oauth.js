@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 // const checkJwt = require('../middleware/jwt');
-const {requiresAuth} = require("express-openid-connect");
+// const {requiresAuth} = require("express-openid-connect");
 const AuthController = require("../controllers/auth");
 const opencors = require('../middleware/opencors');
 

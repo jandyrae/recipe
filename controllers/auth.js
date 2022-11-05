@@ -7,7 +7,7 @@ var path = require("path");
 
 const AuthController = {
   login: (req, res, next) => {
-    console.log("HERE!!!", config.redirect_uri);
+    // console.log("HERE!!!", config.redirect_uri);
     const authorizeURL = `${
       config.auth0_baseURL
     }/authorize?response_type=code&client_id=${

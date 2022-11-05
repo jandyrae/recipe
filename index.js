@@ -21,7 +21,8 @@ app
 
 app.listen(port, () => {
   console.log(
-    `Application listening on http://127.0.0.1:8080/authorization/login or ${port} see API documentation on http://localhost:8080/api-docs/`
+    `Application listening on http://127.0.0.1:8080/authorization/login or ${
+      port} see API documentation on http://localhost:8080/api-docs/`
   );
 });
 
