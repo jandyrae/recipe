@@ -1,7 +1,7 @@
 const getDB = require("../models/connectDB");
-const { ObjectId } = require("mongodb");
-const {kitchen} = require('./kitchens');
-const {recipe} = require('./recipe');
+// const { ObjectId } = require("mongodb");
+// const {kitchen} = require('./kitchens');
+// const {recipe} = require('./recipe');
 
 // async (req,res) => {
 //   if (!req.user) {
@@ -33,6 +33,9 @@ const user = async (req, res, next) => {
             required: true}
     } */
   // create new record in database POST 201
+    if (!req.user) {
+    return res.status(401).send("Not Authenticated");
+  }
   try {
     const collection = await _collection();
     const {

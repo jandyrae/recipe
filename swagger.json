@@ -7,23 +7,57 @@
   },
   "host": "",
   "basePath": "/",
-  "tags": [{
-    "name": "Description",
-    "description": "This API has two endpoints, one is recipe document retrieval, add new, update, or delete. The other holds recipe authors information with the same abilities. See model for required fields."
-  }],
+  "tags": [
+    {
+      "name": "Description",
+      "description": "This API has two endpoints, one is recipe document retrieval, add new, update, or delete. The other holds recipe authors information with the same abilities. See model for required fields."
+    }
+  ],
   "schemes": [
     "http",
     "https"
   ],
   "securityDefinitions": {
-    "bearerAuth": {
-      "type": "apiKey",
+    "OAuth2": {
+      "type": "Token",
       "name": "Authorization",
       "scheme": "bearer",
       "in": "header"
     }
   },
   "paths": {
+    "/authorization/login": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/authorization/callback": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "state",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
     "/recipes/": {
       "get": {
         "tags": [
@@ -45,15 +79,17 @@
           "recipes"
         ],
         "description": "",
-        "parameters": [{
-          "name": "obj",
-          "in": "body",
-          "description": "Recipe information",
-          "required": true,
-          "schema": {
-            "$ref": "#/definitions/recipeArrayExample"
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Recipe information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/recipeArrayExample"
+            }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -76,12 +112,14 @@
           "recipes"
         ],
         "description": "An id is required to access, use `635202a1638557dd0a797441`.",
-        "parameters": [{
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string"
-        }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -99,7 +137,8 @@
           "recipes"
         ],
         "description": "Use example ID `63536d1146db7e234e064f16` to update recipe",
-        "parameters": [{
+        "parameters": [
+          {
             "name": "id",
             "in": "path",
             "required": true,
@@ -135,12 +174,14 @@
           "recipes"
         ],
         "description": "Deleting requires an id to delete. Use `63536d1146db7e234e064f16`",
-        "parameters": [{
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string"
-        }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -149,9 +190,11 @@
             "description": "Bad Request"
           }
         },
-        "security": [{
-          "apiKeyAuth": []
-        }]
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/fromTheKitchenOf/": {
@@ -168,28 +211,41 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "read",
+              "write"
+            ]
+          }
+        ]
       },
       "post": {
         "tags": [
           "fromTheKitchenOf"
         ],
         "description": "",
-        "parameters": [{
-          "name": "obj",
-          "in": "body",
-          "description": "Recipe information",
-          "required": true,
-          "schema": {
-            "$ref": "#/definitions/fromKitchenOfExample"
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Recipe information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/fromKitchenOfExample"
+            }
           }
-        }],
+        ],
         "responses": {
           "200": {
             "description": "OK"
           },
           "201": {
             "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "412": {
             "description": "Precondition Failed"
@@ -203,12 +259,14 @@
           "fromTheKitchenOf"
         ],
         "description": "An id is required to access, use `63536cad46db7e234e064f15`.",
-        "parameters": [{
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string"
-        }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -226,7 +284,8 @@
           "fromTheKitchenOf"
         ],
         "description": "An id is required to update, use `63536cad46db7e234e064f15`.",
-        "parameters": [{
+        "parameters": [
+          {
             "name": "id",
             "in": "path",
             "required": true,
@@ -255,19 +314,29 @@
           "412": {
             "description": "Precondition Failed"
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "read",
+              "write"
+            ]
+          }
+        ]
       },
       "delete": {
         "tags": [
           "fromTheKitchenOf"
         ],
         "description": "Delete requires an id to complete, use `63536cad46db7e234e064f15`",
-        "parameters": [{
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "type": "string"
-        }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -276,9 +345,14 @@
             "description": "Bad Request"
           }
         },
-        "security": [{
-          "apiKeyAuth": []
-        }]
+        "security": [
+          {
+            "OAuth2": [
+              "read",
+              "write"
+            ]
+          }
+        ]
       }
     }
   },
