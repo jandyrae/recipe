@@ -17,8 +17,7 @@ const doc = {
     },
   ],
   definitions: {
-    recipeArrayExample: 
-      {
+    recipeArrayExample: {
       $recipeName: "Recipe Name",
       $cookTemp: "350 Degrees",
       $cookTime: "30 minutes",
@@ -29,14 +28,13 @@ const doc = {
       rating: "5",
       difficulty: "easy",
       $fromKitchenOf: "any@email.com",
-      },
+    },
     fromKitchenOfExample: {
       $firstName: "First",
       $lastName: "Last",
       $email: "mustBe@email.com",
       $phoneNumber: "801-555-555",
-    }
-    
+    },
   },
   securityDefinitions: {
     bearerAuth: {
@@ -54,4 +52,3 @@ const endpointsFiles = ["./index"];
 swaggerAutogen(outputFile, endpointsFiles, doc).then(async () => {
   require("./index");
 });
-
