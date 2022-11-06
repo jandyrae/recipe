@@ -32,27 +32,27 @@ const loadUser = async (req, res, next) => {
   }
 };
 
-const findOrCreateUser = async (authZeroUserJson) => {
-  if (!authZeroUserJson) return;
+// const findOrCreateUser = async (authZeroUserJson) => {
+//   if (!authZeroUserJson) return;
 
-  const existingUser = await User.findOne({ identifier: authZeroUserJson.sub });
+//   const existingUser = await User.findOne({ identifier: authZeroUserJson.sub });
 
-  if (existingUser) return existingUser;
+//   if (existingUser) return existingUser;
 
-  // No user exists in _our_ DB yet, Let's create one with the info
-  // we got from Auth0!
-  const newUser = await User.create({
-    identifier: authZeroUserJson.sub,
-    email: authZeroUserJson.email,
-    given_name: authZeroUserJson.given_name,
-    family_name: authZeroUserJson.family_name,
-    locale: authZeroUserJson.locale,
-    picture: authZeroUserJson.picture,
-    nickname: authZeroUserJson.nickname,
-  });
+//   // No user exists in _our_ DB yet, Let's create one with the info
+//   // we got from Auth0!
+//   const newUser = await User.create({
+//     identifier: authZeroUserJson.sub,
+//     email: authZeroUserJson.email,
+//     given_name: authZeroUserJson.given_name,
+//     family_name: authZeroUserJson.family_name,
+//     locale: authZeroUserJson.locale,
+//     picture: authZeroUserJson.picture,
+//     nickname: authZeroUserJson.nickname,
+//   });
 
-  return newUser;
-};
+//   return newUser;
+// };
 
 const fetchAuthZeroUser = async (token) => {
   // Get the user from Auth0, which is where we've stored user profiles
