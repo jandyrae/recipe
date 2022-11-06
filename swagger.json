@@ -19,10 +19,11 @@
   ],
   "securityDefinitions": {
     "OAuth2": {
-      "type": "oauth2",
+      "type": "apiKey",
       "name": "Authorization",
       "scheme": "bearer",
-      "in": "header"
+      "in": "header",
+      "oauth": []
     }
   },
   "paths": {

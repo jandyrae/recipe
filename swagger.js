@@ -18,10 +18,12 @@ const doc = {
   ],
   securityDefinitions: {
     OAuth2: {
-      type: "oauth2",
+      type: "apiKey",
+      // tokenUrl: "https://dev-ntg5ph6kts8y1iza.us.auth0.com/oauth/token",
       name: "Authorization",
       scheme: "bearer",
       in: "header",
+      oauth: []
     }, //https://github.com/davibaltar/swagger-autogen#bearer-auth-example
   },
   definitions: {
