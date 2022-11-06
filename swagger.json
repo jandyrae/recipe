@@ -18,12 +18,12 @@
     "https"
   ],
   "securityDefinitions": {
-    "OAuth2": {
+    "Authorization": {
       "type": "apiKey",
       "name": "Authorization",
-      "scheme": "bearer",
       "in": "header",
-      "oauth": []
+      "description": "Authentication token (Bearer)",
+      "example": "Bearer <your token>"
     }
   },
   "paths": {
@@ -432,5 +432,10 @@
         "phoneNumber"
       ]
     }
-  }
+  },
+  "security": [
+    {
+      "Authorization": []
+    }
+  ]
 }

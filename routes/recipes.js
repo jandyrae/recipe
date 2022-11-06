@@ -11,7 +11,7 @@ const {
   deleteRecipe
 } = require("../controllers/recipe");
 
-router.use([opencors]);
+router.use([opencors, express.json()]);
 router.get("/", getAllRecipes);
 router.post("/", validation.createRecipe, createRecipe);
 router.get("/:id", getOneRecipe);
@@ -20,3 +20,4 @@ router.delete("/:id", deleteRecipe);
 
 
 module.exports = router;
+
