@@ -16,6 +16,7 @@ const doc = {
         "This API has two endpoints, one is recipe document retrieval, add new, update, or delete. The other holds recipe authors information with the same abilities. See model for required fields.",
     },
   ],
+
   securityDefinitions: {
     Authorization: {
       type: "apiKey",
@@ -25,11 +26,7 @@ const doc = {
       example: "Bearer <your token>",
     },
   },
-  security: [
-    {
-      Authorization: [],
-    },
-  ], //https://github.com/davibaltar/swagger-autogen#bearer-auth-example
+   //https://github.com/davibaltar/swagger-autogen#bearer-auth-example
   definitions: {
     recipeArrayExample: {
       $recipeName: "Recipe Name",
@@ -50,7 +47,11 @@ const doc = {
       $phoneNumber: "801-555-555",
     },
   },
-
+  security: [
+    {
+      Authorization: []
+    },
+  ],
 };
 
 const outputFile = "./swagger.json";

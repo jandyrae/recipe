@@ -27,38 +27,6 @@
     }
   },
   "paths": {
-    "/authorization/login": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    },
-    "/authorization/callback": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "state",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "code",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
     "/recipes/": {
       "get": {
         "tags": [
@@ -193,7 +161,7 @@
         },
         "security": [
           {
-            "apiKeyAuth": []
+            "Authorization": []
           }
         ]
       }
@@ -215,7 +183,12 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
       },
       "post": {
         "tags": [
@@ -246,7 +219,12 @@
           "412": {
             "description": "Precondition Failed"
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
       }
     },
     "/fromTheKitchenOf/{id}": {
@@ -273,7 +251,12 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -310,7 +293,12 @@
           "412": {
             "description": "Precondition Failed"
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -335,10 +323,7 @@
         },
         "security": [
           {
-            "OAuth2": [
-              "read",
-              "write"
-            ]
+            "Authorization": []
           }
         ]
       }

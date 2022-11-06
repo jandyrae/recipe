@@ -4,7 +4,9 @@ const { ObjectId } = require("mongodb");
 const getAllContacts = async (req, res, next) => {
   // #swagger.tags = ['fromTheKitchenOf']
   /* #swagger.description =  'The name or id is not needed to execute this GET' */
-
+  /* #swagger.security = [{
+            "Authorization": []
+          }] */
     if (!req.user) {
     return res.status(401).send("Not Authenticated");
   } else {
@@ -25,7 +27,9 @@ const getAllContacts = async (req, res, next) => {
 const getOneContact = async (req, res, next) => {
   // #swagger.tags = ['fromTheKitchenOf']
   // #swagger.description = 'An id is required to access, use `63536cad46db7e234e064f15`.'
-
+  /* #swagger.security = [{
+            "Authorization": []
+          }] */
   if (!ObjectId.isValid(req.params.id)) {
     res
       .status(400)
@@ -83,6 +87,9 @@ const updateContact = async (req, res, next) => {
             required: true,
             schema: { $ref: "#/definitions/fromKitchenOfExample" }
     } */
+      /* #swagger.security = [{
+            "Authorization": []
+          }] */
   // update existing record in database PUT 204
   if (!ObjectId.isValid(req.params.id)) {
     res
@@ -119,11 +126,8 @@ const deleteContact = async (req, res, next) => {
   /* #swagger.description = 'Delete requires an id to complete, use `63536cad46db7e234e064f15`'
    */
   /* #swagger.security = [{
-          "OAuth2": [
-              'read', 
-              'write'
-          ]
-  }] */
+            "Authorization": []
+          }] */
   // delete records from database DELETE 200
   if (!ObjectId.isValid(req.params.id)) {
     res

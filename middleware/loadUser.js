@@ -16,10 +16,10 @@ const loadUser = async (req, res, next) => {
     // const authZeroUser = await fetchAuthZeroUser(req.headers.authorization);
     // Lookup the user in _our_ database based on the
     // user info we got back from Auth0.
-    
+    console.log(authZeroUser);
     // If no User exists in our database yet, create
     // one and return it!
-    const user = await findOrCreateUser(authZeroUser);
+    // const user = await findOrCreateUser(authZeroUser);
 
     // Now we have a user. Set it on the request so we
     // can access it in controllers \o/
