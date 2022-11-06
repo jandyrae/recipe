@@ -1,11 +1,11 @@
 const config = require("../config");
-const user = require("../controllers/users");
+const User = require("../controllers/users");
 
 const loadUser = async (req, res, next) => {
   // If no Authorization header with a token, unable to load a user
   try {
     console.log("top of try in loadUser", req.headers.authorization);
-    // if (!req.headers.authorization) next();
+    if (!req.headers.authorization) next();
     // Parse the token out of the authorization header
     const token = parseToken(req);
     // console.log(token)
@@ -24,7 +24,7 @@ const loadUser = async (req, res, next) => {
     // Now we have a user. Set it on the request so we
     // can access it in controllers \o/
     req.user = user;
-    console.log("is working?", authZeroUser);
+    // console.log("is working?", authZeroUser);
     next();
   } catch (_error) {
     console.log(_error);
@@ -35,13 +35,13 @@ const loadUser = async (req, res, next) => {
 const findOrCreateUser = async (authZeroUserJson) => {
   if (!authZeroUserJson) return;
 
-  const existingUser = await user.findOne({ identifier: authZeroUserJson.sub });
+  const existingUser = await User.findOne({ identifier: authZeroUserJson.sub });
 
   if (existingUser) return existingUser;
 
   // No user exists in _our_ DB yet, Let's create one with the info
   // we got from Auth0!
-  const newUser = await user.create({
+  const newUser = await User.create({
     identifier: authZeroUserJson.sub,
     email: authZeroUserJson.email,
     given_name: authZeroUserJson.given_name,

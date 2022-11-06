@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const validation = require("../middleware/validate");
+const opencors = require("../middleware/opencors");
 
 const {
   getAllRecipes,
@@ -10,6 +11,7 @@ const {
   deleteRecipe
 } = require("../controllers/recipe");
 
+router.use([opencors]);
 router.get("/", getAllRecipes);
 router.post("/", validation.createRecipe, createRecipe);
 router.get("/:id", getOneRecipe);

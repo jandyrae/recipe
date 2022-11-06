@@ -8,24 +8,24 @@ const getDB = require("../models/connectDB");
 //     return res.status(401).send("Not Authenticated");
 //   }
 // }
-const getAllUsers = async (req, res, next) => {
-  // #swagger.tags = ['users']
-  // const verify = await index;
-  if (!req.user) {
-    return res.status(401).send("Not Authenticated");
-  }
-  const filter = Object.fromEntries(Object.entries({}).filter(([_k, v]) => v));
-  const collection = await _collection();
-  const documents = await collection.find(filter).toArray((err, result) => {
-    if (err) {
-      res.status(500).json({ message: err });
-    }
-    res.status(200).json(result);
-  });
-  console.log(documents);
-};
+// const getAllUsers = async (req, res, next) => {
+//   // #swagger.tags = ['users']
+//   // const verify = await index;
+//   if (!req.user) {
+//     return res.status(401).send("Not Authenticated");
+//   }
+//   const filter = Object.fromEntries(Object.entries({}).filter(([_k, v]) => v));
+//   const collection = await _collection();
+//   const documents = await collection.find(filter).toArray((err, result) => {
+//     if (err) {
+//       res.status(500).json({ message: err });
+//     }
+//     res.status(200).json(result);
+//   });
+//   console.log(documents);
+// };
 
-const user = async (req, res, next) => {
+const User = async (req, res, next) => {
   // #swagger.tags = ['user']
   /*	#swagger.parameters['obj'] = {
             in: 'body',
@@ -33,9 +33,9 @@ const user = async (req, res, next) => {
             required: true}
     } */
   // create new record in database POST 201
-    if (!req.user) {
-    return res.status(401).send("Not Authenticated");
-  }
+  //   if (!req.user) {
+  //   return res.status(401).send("Not Authenticated");
+  // }
   try {
     const collection = await _collection();
     const {
@@ -80,7 +80,7 @@ const _collection = async () => {
   }
 };
 
-module.exports = user, getAllUsers;
+module.exports = User;
 
 // { // raw json from auth0
 //     "created_at": "2022-10-31T23:16:08.241Z",
