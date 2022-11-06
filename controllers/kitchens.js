@@ -1,5 +1,6 @@
 const getDB = require("../models/connectDB");
 const { ObjectId } = require("mongodb");
+const loadUser = require("../middleware/loadUser");
 
 const getAllContacts = async (req, res, next) => {
   // #swagger.tags = ['fromTheKitchenOf']
@@ -7,7 +8,7 @@ const getAllContacts = async (req, res, next) => {
   /* #swagger.security = [{
             "Authorization": []
           }] */
-    if (!req.user) {
+    if (loadUser) {
     return res.status(401).send("Not Authenticated");
   } else {
   const filter = Object.fromEntries(Object.entries({}).filter(([_k, v]) => v));

@@ -141,7 +141,7 @@ DELETE https://recipeapi-vhb5.onrender.com/recipes/63536d1146db7e234e064f16 HTTP
 
 ### get all recipe owners
 GET https://recipeapi-vhb5.onrender.com/fromTheKitchenOf HTTP/1.1
-
+Authorization: Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwiaXNzIjoiaHR0cHM6Ly9kZXYtbnRnNXBoNmt0czh5MWl6YS51cy5hdXRoMC5jb20vIn0..YGQdrKtplSZygcWB.3CwI9l0H1wW93T3iIlRWyYFpARM11r5Wcl85Rlq9CMJufDX6cZ3Tb8vmh0S2ngFVpAEKdl6R1TzGlE2Ul43wYrObFSRIlHS42P89hsIGohaTuhpUo6Wv3aSB5z6OoJU33mJKUKRk6XmzuuCylGgULnv5CI5vfhTmjL_la7cIlUrgCKFHe2P7JiWF5UaoILfl7gepIzKfC2DkDhRdRvEB0-p3pxct0BFmnn3CnKkYtEuvMquOlllEfF7WVPRDG6wwHQ5D-jL4EuE_WvugdWockRxBUUGtC8TaIAoSBYwC2hlF28HojBXpvxnZKZCc0iuhtP7gWfEOu7JMuIBbWmjlbNJzAV0NRnc.oCBhIu5AiI0bx_TE3WHdJQ
 
 ### create recipe owner POST
 POST  https://recipeapi-vhb5.onrender.com/fromTheKitchenOf HTTP/1.1

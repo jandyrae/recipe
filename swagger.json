@@ -26,7 +26,7 @@
       "example": "Bearer <your token>"
     }
   },
-  "paths": {
+  
     "/recipes/": {
       "get": {
         "tags": [
@@ -161,7 +161,7 @@
         },
         "security": [
           {
-            "Authorization": []
+            "apiKeyAuth": []
           }
         ]
       }
@@ -219,12 +219,7 @@
           "412": {
             "description": "Precondition Failed"
           }
-        },
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        }
       }
     },
     "/fromTheKitchenOf/{id}": {

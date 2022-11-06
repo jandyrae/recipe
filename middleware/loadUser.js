@@ -1,5 +1,5 @@
 const config = require("../config");
-const User = require("../controllers/users");
+// const User = require("../controllers/users");
 
 const loadUser = async (req, res, next) => {
   // If no Authorization header with a token, unable to load a user
