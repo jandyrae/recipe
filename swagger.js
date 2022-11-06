@@ -18,7 +18,7 @@ const doc = {
   ],
   securityDefinitions: {
     OAuth2: {
-      type: "https",
+      type: "oauth2",
       name: "Authorization",
       scheme: "bearer",
       in: "header",
