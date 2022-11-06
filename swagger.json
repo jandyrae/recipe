@@ -412,10 +412,5 @@
         "phoneNumber"
       ]
     }
-  },
-  "security": [
-    {
-      "Authorization": []
-    }
-  ]
+  }
 }
