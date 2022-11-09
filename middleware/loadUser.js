@@ -1,3 +1,4 @@
+
 const config = require("../config");
 // const User = require("../controllers/users");
 
@@ -7,23 +8,23 @@ const loadUser = async (req, res, next) => {
     console.log("top of try in loadUser", req.headers.authorization);
     if (!req.headers.authorization) next();
     // Parse the token out of the authorization header
-    const token = parseToken(req);
+    // const token = parseToken(req);
     // console.log(token)
     // Fetch user's info from auth0 by making a GET
     // request to auth0 with the access token in
     // the authorization header
-    const authZeroUser = await fetchAuthZeroUser(token);
+    // const authZeroUser = await fetchAuthZeroUser(token);
     // const authZeroUser = await fetchAuthZeroUser(req.headers.authorization);
     // Lookup the user in _our_ database based on the
     // user info we got back from Auth0.
-    console.log(authZeroUser);
+    // console.log(authZeroUser);
     // If no User exists in our database yet, create
     // one and return it!
     // const user = await findOrCreateUser(authZeroUser);
 
     // Now we have a user. Set it on the request so we
     // can access it in controllers \o/
-    req.user = user;
+    // req.user = user;
     // console.log("is working?", authZeroUser);
     next();
   } catch (_error) {
@@ -57,11 +58,12 @@ const loadUser = async (req, res, next) => {
 const fetchAuthZeroUser = async (token) => {
   // Get the user from Auth0, which is where we've stored user profiles
   const response = await fetch(`${config.auth0_baseURL}/userinfo`, {
-    // headers: { Authorization: `Bearer ${token}` },
-    headers: { Authorization: token}
-  });
-  console.log(response.json());
-  return response.json();
+    headers: { Authorization: `${token}` },
+    // headers: { Authorization: token}
+  })
+  .then(userInfo => userInfo.json())
+  .then(console.log(response) );
+  return response.json()
 };
 
 const parseToken = (req) => {

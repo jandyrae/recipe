@@ -41,7 +41,7 @@ const getOneContact = async (req, res, next) => {
       }
       res.status(200).json(result[0]);
     });
-  console.log(ObjectId(req.params.id), document[0]);
+  console.log(ObjectId(req.params.id), document);
 };
 
 const createContact = async (req, res, next) => {
