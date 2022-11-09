@@ -13,37 +13,35 @@ const checkJwt = auth({
 
 
 
-module.exports = checkJwt;
+module.exports = checkJwt, checkScopes;
 
 
+// var request = require("request");
 
+// var options = { method: 'POST',
+//   url: 'https://dev-ntg5ph6kts8y1iza.us.auth0.com/oauth/token',
+//   headers: { 'content-type': 'application/json' },
+//   body: '{"client_id":"iSrlzg4MYkugMzCBy8L3BpqgA4GDdXyc","client_secret":"j-46U7ubveYux7QH0XmlagsuFMFbcPLGsJmtSuejcVjcpD9o0zGtTEM2LRq7cHBb","audience":"https://dev-ntg5ph6kts8y1iza.us.auth0.com/api/v2/","grant_type":"client_credentials"}' };
 
-var request = require("request");
+// request(options, function (error, response, body) {
+//   if (error) throw new Error(error);
 
-var options = { method: 'POST',
-  url: 'https://dev-ntg5ph6kts8y1iza.us.auth0.com/oauth/token',
-  headers: { 'content-type': 'application/json' },
-  body: '{"client_id":"iSrlzg4MYkugMzCBy8L3BpqgA4GDdXyc","client_secret":"j-46U7ubveYux7QH0XmlagsuFMFbcPLGsJmtSuejcVjcpD9o0zGtTEM2LRq7cHBb","audience":"https://dev-ntg5ph6kts8y1iza.us.auth0.com/api/v2/","grant_type":"client_credentials"}' };
+//   console.log(body);
+// });
 
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
+// const axios = require("axios");
+// const { config } = require('dotenv');
 
-  console.log(body);
-});
+// const options = { 
+//   method: "GET",
+//   url: "http://path_to_your_api/",
+//   headers: { "authorization": "Bearer TOKEN" },
+// };
 
-const axios = require("axios");
-const { config } = require('dotenv');
-
-const options = { 
-  method: "GET",
-  url: "http://path_to_your_api/",
-  headers: { "authorization": "Bearer TOKEN" },
-};
-
-axios(options)
-  .then(response => {
-    console.log(response.data);
-  })
-  .catch(error => {
-    console.log(error);
-  });
+// axios(options)
+//   .then(response => {
+//     console.log(response.data);
+//   })
+//   .catch(error => {
+//     console.log(error);
+//   });
