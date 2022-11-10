@@ -8,8 +8,9 @@ const loadUser = async (req, res, next) => {
     console.log("top of try in loadUser", req.headers.authorization);
     if (!req.headers.authorization) next();
     // Parse the token out of the authorization header
-    const token = parseToken(req);
-    console.log(token);
+    // const token = parseToken(req);
+     const token = req.headers.authorization;
+    // console.log(token);
     // Fetch user's info from auth0 by making a GET
     // request to auth0 with the access token in
     // the authorization header
@@ -25,7 +26,7 @@ const loadUser = async (req, res, next) => {
     // Now we have a user. Set it on the request so we
     // can access it in controllers \o/
     req.user = user;
-    // console.log("is working?", authZeroUser);
+    console.log("is working?", user);
     next();
   } catch (_error) {
     console.log(_error);
@@ -58,7 +59,7 @@ const findOrCreateUser = async (authZeroUserJson) => {
 const fetchAuthZeroUser = async (token) => {
   // Get the user from Auth0, which is where we've stored user profiles
   const response = await fetch(`${config.auth0_baseURL}/userinfo`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `${token}` },
     // headers: { Authorization: token}
   });
   // .then(userInfo => userInfo.json())
@@ -66,19 +67,19 @@ const fetchAuthZeroUser = async (token) => {
   return response.json();
 };
 
-const parseToken = (req) => {
-  // Parse out the token. The token is in the Authorization header like this:
-  // Authorization: Bearer <token>
-  try {
-    // console.log(typeof req.headers.authorization);
-    // if (!undefined) {
-      return req.headers.authorization.split(" ")[1];
-    // } else {
-      // console.log(res.headers.authorization);
-    // }
-  } catch (error) {
-    console.error(error);
-  }
-};
+// const parseToken = (req) => {
+//   // Parse out the token. The token is in the Authorization header like this:
+//   // Authorization: Bearer <token>
+//   try {
+//     console.log(req.headers.authorization);
+//     // if (!undefined) {
+//       return req.headers.authorization.split(" ")[1];
+//     // } else {
+//       // console.log(res.headers.authorization);
+//     // }
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
 
 module.exports = loadUser;

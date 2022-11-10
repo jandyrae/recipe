@@ -46,8 +46,8 @@
     "validatorjs": "^3.22.1"
   },
   "engines" : { 
-    "npm" : ">=8.0.0 <9.0.0",
-    "node" : ">=16.0.0 <17.0.0"
+    "npm" : "8.19.1",
+    "node" : "18.12.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

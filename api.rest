@@ -53,6 +53,7 @@ GET http://localhost:8080/fromTheKitchenOf HTTP/1.1
 ### create recipe owner POST
 POST http://localhost:8080/fromTheKitchenOf HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIiwiaXNzIjoiaHR0cHM6Ly9kZXYtbnRnNXBoNmt0czh5MWl6YS51cy5hdXRoMC5jb20vIn0..chjeBM5O-37Ae0gA.JwYVLYX6430JQGsWa5CwcAdY3GwuPFSscHdjns5gb9T8veiuG1VbDpbp09TY-ctfdqiytLjGPXh0kubdbz98QVFGKDe3hdtElkNFabNw2KdGuAUQiFrwvEOekphaHAOKhbBI2W3Mj5uayvPBv6HaJwc-FMOL_pd7zsfzsW_szIbCWK1OpjT8bUnAFCR7yNDd-llUK9Bs1zOtjrYkOLPJctFmQiBGcP6_CvuQICVcpLXjPtuNH76WPAnKW7lNW-JDyz4zY8YNvkp2Jex2rzDZVST4LhdHUFyfmaRnY3a11X1qCxvu5kPYQpQAx0EGLcYy4VKXDe2wBxBDbIWOOlcmH-OcvKk7jnA.WkPaxWaxI6TgqkxKSBTwQg
 
 {
   "firstName":"Jaynann",
