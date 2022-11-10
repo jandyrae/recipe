@@ -3,7 +3,7 @@ const axios = require("axios");
 
 
 const AuthController = {
-  login: (req, res, next) => {
+  login: (req, res, ) => {
     // console.log("HERE!!!", config.redirect_uri);
     const authorizeURL = `${
       config.auth0_baseURL
@@ -15,7 +15,7 @@ const AuthController = {
     // res.sendFile(path.join(__dirname, "../static/oauth.html"));
     console.log(authorizeURL);
     res.redirect(authorizeURL);
-    next();
+   
   },
   callback: async (req, res, next) => {
     if (!req.query.state == 1234) {

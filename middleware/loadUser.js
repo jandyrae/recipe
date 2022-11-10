@@ -1,4 +1,4 @@
-var fetch = import("node-fetch");
+// var fetch = import("node-fetch");
 const config = require("../config");
 const User = require("../models/user");
 
@@ -9,7 +9,7 @@ const loadUser = async (req, res, next) => {
     if (!req.headers.authorization) next();
     // Parse the token out of the authorization header
     const token = parseToken(req);
-    // console.log(token)
+    console.log(token);
     // Fetch user's info from auth0 by making a GET
     // request to auth0 with the access token in
     // the authorization header
@@ -58,24 +58,24 @@ const findOrCreateUser = async (authZeroUserJson) => {
 const fetchAuthZeroUser = async (token) => {
   // Get the user from Auth0, which is where we've stored user profiles
   const response = await fetch(`${config.auth0_baseURL}/userinfo`, {
-    headers: { Authorization: `${token}` },
+    headers: { Authorization: `Bearer ${token}` },
     // headers: { Authorization: token}
-  })
-  .then(userInfo => userInfo.json())
-  .then(console.log(response) );
-  return response.json()
+  });
+  // .then(userInfo => userInfo.json())
+  // .then(console.log(response) );
+  return response.json();
 };
 
 const parseToken = (req) => {
   // Parse out the token. The token is in the Authorization header like this:
   // Authorization: Bearer <token>
   try {
-    console.log(typeof req.headers.authorization);
-    if (!undefined) {
+    // console.log(typeof req.headers.authorization);
+    // if (!undefined) {
       return req.headers.authorization.split(" ")[1];
-    } else {
-      console.log(res.headers.authorization);
-    }
+    // } else {
+      // console.log(res.headers.authorization);
+    // }
   } catch (error) {
     console.error(error);
   }
