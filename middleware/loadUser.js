@@ -36,7 +36,7 @@ const loadUser = async (req, res, next) => {
 const findOrCreateUser = async (authZeroUserJson) => {
   if (!authZeroUserJson) return;
 
-  const existingUser = await User.findOne({ identifier: authZeroUserJson.sub });
+  const existingUser = await User.find({ identifier: authZeroUserJson.sub });
 
   if (existingUser) return existingUser;
 

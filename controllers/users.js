@@ -45,9 +45,7 @@ const User = async (req, res, next) => {
       family_name,
       locale,
       picture,
-      nickname,
-      recipe,
-      kitchen,
+      nickname
     } = req.body;
     const document = await collection.insertOne({
       identifier,
@@ -56,9 +54,7 @@ const User = async (req, res, next) => {
       family_name,
       locale,
       picture,
-      nickname,
-      recipe,
-      kitchen,
+      nickname
     });
     console.log(`${document} user document inserted`);
     res.status(201);

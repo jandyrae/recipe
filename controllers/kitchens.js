@@ -1,24 +1,28 @@
 const getDB = require("../models/connectDB");
 const { ObjectId } = require("mongodb");
-const loadUser = require("../middleware/loadUser");
 
 const getAllContacts = async (req, res, next) => {
   // #swagger.tags = ['fromTheKitchenOf']
   /* #swagger.description =  'The name or id is not needed to execute this GET' */
 
-
-  const filter = Object.fromEntries(Object.entries({}).filter(([_k, v]) => v));
-  const collection = await _collection();
-  const documents = await collection.find(filter).toArray((err, result) => {
-    if (err) {
-      res
-        .status(500)
-        .json(collection.error || "An error ocurred getting the collection.");
-    }
-    res.status(200).json(result);
-  });
-  console.log(documents);
-
+  if (!req.user) {
+    res.status(401).json("Not Authorized");
+  } else {
+    const filter = Object.fromEntries(
+      Object.entries({}).filter(([_k, v]) => v)
+    );
+    const collection = await _collection();
+    const documents = await collection.find(filter).toArray((err, result) => {
+      if (err) {
+        res
+          .status(500)
+          .json(collection.error || "An error ocurred getting the collection.");
+      }
+      res.status(200).json(result);
+    });
+    console.log(documents);
+    next();
+  }
 };
 
 const getOneContact = async (req, res, next) => {
