@@ -1,4 +1,4 @@
-
+var fetch = import("node-fetch");
 const config = require("../config");
 const User = require("../models/user");
 

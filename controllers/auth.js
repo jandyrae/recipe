@@ -1,6 +1,6 @@
 const config = require("../config");
 const axios = require("axios");
-var path = require("path");
+
 
 const AuthController = {
   login: (req, res, next) => {
