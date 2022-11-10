@@ -1,4 +1,4 @@
-// var fetch = import("node-fetch");
+const axios = require("axios");
 const config = require("../config");
 const User = require("../models/user");
 
@@ -64,7 +64,7 @@ const fetchAuthZeroUser = async (token) => {
   });
   // .then(userInfo => userInfo.json())
   // .then(console.log(response) );
-  return response.json();
+  return await response.json();
 };
 
 // const parseToken = (req) => {

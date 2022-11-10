@@ -4,7 +4,7 @@ const router = Router();
 const AuthController = require("../controllers/auth");
 const opencors = require('../middleware/opencors');
 
-router.use([opencors]);
+// router.use([opencors]);
 router.get("/login", AuthController.login);
 // moves to authorize then returns
 router.get("/callback", AuthController.callback);

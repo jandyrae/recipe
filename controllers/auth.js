@@ -44,7 +44,7 @@ const AuthController = {
     } catch (error) {
       next(error);
     }
-    next();
+    // next();
   },
 };
 
